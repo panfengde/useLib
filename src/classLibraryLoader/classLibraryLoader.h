@@ -9,8 +9,11 @@
 #include <type_traits>
 #include <utility>
 #include<iostream>
+
 #if defined(_WIN32)
+
 #include <windows.h>
+
 #else
 #include <dlfcn.h>
 #endif
@@ -26,7 +29,12 @@ namespace mao::library {
 
         void Free();
 
+#if defined(_WIN32)
+        HMODULE libraryHandle_;
+#else
         void* libraryHandle_;
+#endif
+
     };
 }  // namespace mao::library
 
