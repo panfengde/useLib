@@ -8,8 +8,12 @@
 #include <string>
 #include <type_traits>
 #include <utility>
-#include <windows.h>
 #include<iostream>
+#if defined(_WIN32)
+#include <windows.h>
+#else
+#include <dlfcn.h>
+#endif
 
 namespace mao::library {
     class classLibraryLoader {
@@ -22,7 +26,7 @@ namespace mao::library {
 
         void Free();
 
-        HMODULE libraryHandle_;
+        void* libraryHandle_;
     };
 }  // namespace mao::library
 
