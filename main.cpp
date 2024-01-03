@@ -4,14 +4,18 @@
 #include "classLibraryLoader/classLibraryLoader.h"
 #include "classLibraryLoader/classLibraryLoader.cpp"
 #include<iostream>
+#include<vector>
 
 typedef int (*helloType)();
 
+class LabAtom;
+
+typedef LabAtom (*libEntry)(std::vector<LabAtom*> );
 
 int main() {
     mao::library::classLibraryLoader testLoader;
-    testLoader.Load(std::string("E:\\code\\c\\Dynamically_calling_dynamic_libraries\\helloLib\\lib\\libLAB.dll"));
-    //testLoader.Load(std::string("/Users/panfeng/coder/myProject/LibUse/useLib/libLAB.dylib"));
+    //testLoader.Load(std::string("E:\\code\\c\\Dynamically_calling_dynamic_libraries\\helloLib\\lib\\libLAB.dll"));
+    testLoader.Load(std::string("/Users/panfeng/coder/myProject/LibUse/useLib/lib/libaLib.dylib"));
     if (testLoader.libraryHandle_) {
 #if defined(_WIN32)
         auto hello = (helloType) GetProcAddress(testLoader.libraryHandle_, "hello");
